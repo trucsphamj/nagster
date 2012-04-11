@@ -1,9 +1,9 @@
-<% if @member.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation">
     <h2>Fix the following errors:</h2>
     <p> </p>
     <ul>
-    <%@member.errors.full_messages.each do |msg| %>
+    <%object.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>

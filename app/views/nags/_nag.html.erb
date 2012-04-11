@@ -1,0 +1,15 @@
+<tr>
+  <td class="nag">
+    <span class="content"><%= nag.content %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(nag.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_member?(nag.member) %>
+  <td>
+      <%= link_to "delete", nag, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => nag.content %>
+  </td>
+  <% end %>
+</tr>

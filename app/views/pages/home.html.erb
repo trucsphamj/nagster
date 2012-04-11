@@ -1,7 +1,20 @@
-    <h1>Nagster</h1>
+<h1>Nagster</h1>
+  <% if signed_in? %>
+    <%= link_to "Members", members_path %>
+    <span id="sendNagLink"><%= link_to "Send a Nag", nagForm_path %></span>
+    <table class="front" summary="For signed-in users">
+      <tr>
+        
+        <td class="sidebar round">
+          <%= render 'shared/member_info' %>
+        </td>
+    </tr>
+  </table>
+    
+  <% else %>
     <p>
       Want to nag or be nagged? Click the button below to register
     </p>
 
     <%= link_to "Nag or Be Nagged", new_member_path, :class => "signup_button round" %>
-  
+  <% end %>

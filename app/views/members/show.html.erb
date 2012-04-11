@@ -5,10 +5,17 @@
         <%= gravatar_for @member %>
         <%= @member.name %>
       </h1>
+      <% unless @member.nags.empty? %>
+        <table class="nags" summary="Member nags">
+          <%= render @nags %>
+        </table>
+        <%= will_paginate @nags %>
+      <% end %>
     </td>
     <td class="sidebar round">
       <strong>Name</strong> <%= @member.name %><br />
-      <strong>URL</strong>  <%= link_to member_path(@user), @member %>
+      <strong>URL</strong>  <%= link_to member_path(@member), @member %> <br />
+      <strong>Nags</strong> <%= @member.nags.count %>
     </td>
   </tr>
 </table>

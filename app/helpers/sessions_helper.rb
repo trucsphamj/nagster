@@ -9,7 +9,7 @@ module SessionsHelper
   end
 
   def current_member
-    @current_membere ||= member_from_remember_token
+    @current_member ||= member_from_remember_token
   end
 
   def signed_in?  
@@ -21,6 +21,24 @@ module SessionsHelper
     self.current_member = nil
   end
 
+  def current_member?(member)
+    member == current_member
+  end
+
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+  def deny_access
+    store_location
+    redirect_to signin_path, :notice => "Please sign in to access this page."
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+
   private
 
     def member_from_remember_token
@@ -29,6 +47,14 @@ module SessionsHelper
 
     def remember_token
       cookies.signed[:remember_token] || [nil, nil]
+    end
+
+    def store_location
+      session[:return_to] = request.fullpath
+    end
+
+    def clear_return_to
+      session[:return_to] = nil
     end
 end
 

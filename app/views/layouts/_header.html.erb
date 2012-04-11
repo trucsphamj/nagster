@@ -5,7 +5,9 @@
     <ul>
       <li><%= link_to "Home", root_path %></li>
       <% if signed_in? %>
+        
         <li><%= link_to "Profile", current_member %></li>
+        <li><%= link_to "Settings", edit_member_path(current_member) %></li>  
         <li><%= link_to "Log out", signout_path, :method => :delete %></li>
       <% else %>
         <li><%= link_to "Register", signup_path %></li>

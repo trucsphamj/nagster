@@ -8,6 +8,7 @@ SampleApp::Application.routes.draw do
   resources :users
   resources :members
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :nags, :only => [:create, :destroy]
  
   get "pages/home"
 
@@ -31,6 +32,7 @@ SampleApp::Application.routes.draw do
   match '/new', :to => 'members#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/nagForm', :to => 'pages#nagForm'
 
 
 

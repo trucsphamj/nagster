@@ -11,16 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328100859) do
+ActiveRecord::Schema.define(:version => 20120401183229) do
 
   create_table "members", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "encrypted_password"
     t.string   "salt"
+    t.boolean  "admin",              :default => false
   end
+
+  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
+
+  create_table "nags", :force => true do |t|
+    t.string   "content"
+    t.integer  "member_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "nags", ["member_id", "created_at"], :name => "index_nags_on_member_id_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -30,7 +42,5 @@ ActiveRecord::Schema.define(:version => 20120328100859) do
     t.string   "encrypted_password"
     t.string   "salt"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end

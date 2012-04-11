@@ -2,6 +2,8 @@ class Member < ActiveRecord::Base
   attr_accessor :password 
   attr_accessible :name, :email, :password, :password_confirmation
 
+  has_many :nags, :dependent => :destroy
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,  :presence => true,
@@ -27,8 +29,13 @@ class Member < ActiveRecord::Base
   end
 
   def self.authenticate_with_salt(id, cookie_salt)
-    user = find_by_id(id)
-    (user && user.salt == cookie_salt) ? user : nil
+    member = find_by_id(id)
+    (member && member.salt == cookie_salt) ? member : nil
+  end
+
+  def feed
+    # This is preliminary. See Chapter 12 for the full implementation.
+    Nag.where("member_id = ?", id)
   end
 
   private
