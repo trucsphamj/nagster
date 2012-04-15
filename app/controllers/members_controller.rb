@@ -55,11 +55,16 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
-  private
+  def nagAMember
+    @nag = Nag.new
+    @memberID = params[:id]
+  end
 
-    def authenticate
-      deny_access unless signed_in?
-    end
+  private
+    #(This method has been moved to app/helpers/session_helper.rb)
+    #def authenticate 
+      #deny_access unless signed_in?
+   # end
 
     def correct_member    
       @member = Member.find(params[:id])

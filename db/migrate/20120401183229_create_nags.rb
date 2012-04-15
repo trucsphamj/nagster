@@ -3,10 +3,11 @@ class CreateNags < ActiveRecord::Migration
     create_table :nags do |t|  
       t.string :content
       t.integer :member_id
+      t.string :receiver_id
 
       t.timestamps
     end
-    add_index :nags, [:member_id, :created_at]
+    add_index :nags, [:member_id, :receiver_id, :created_at]
   end
 
   def self.down

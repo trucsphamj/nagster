@@ -1,0 +1,55 @@
+<div class="member_info">
+  <a href="<%= member_path(current_member) %>">
+    <%= gravatar_for current_member, :size => 30 %>
+    <span class="member_name">
+      <%= current_member.name %>
+    </span>
+    <span class="nags">
+      <%= pluralize(current_member.nags.count, "nag") %>
+    </span>
+  </a>
+</div>     
+
+---------------
+
+<tr>
+  <td class="gravatar">
+    <%= link_to gravatar_for(feed_item.member), feed_item.member %>
+  </td>
+  <td class="nag">
+    <span class="member">
+      <%= link_to feed_item.member.name, feed_item.member %>
+    </span>
+    <span class="content"><%= feed_item.content %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_member?(feed_item.member) %>
+    <td>
+      <%= link_to "delete", feed_item, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => feed_item.content %>
+    </td>
+  <% end %>
+</tr>
+
+-------------
+
+<td class="nag">
+    <span class="member">
+      Sent to <%=Member.find_by_id(feed_item.receiver_id ).name%> : 
+    </span>
+    <span class="content"><%= feed_item.content %></span>
+    <span class="timestamp">
+      Created <%= time_ago_in_words(feed_item.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_member?(feed_item.member) %>
+    <td>
+      <%= link_to "delete", feed_item, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => feed_item.content %>
+    </td>
+  <% end %>
+</tr>

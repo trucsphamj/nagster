@@ -19,9 +19,26 @@ class PagesController < ApplicationController
     @title = "Help"
   end
 
-  def nagForm
+  def nagSomeOne
     @nag = Nag.new 
-     @feed_items = current_member.feed.paginate(:page => params[:page])
+     #@feed_items = current_member.feed.paginate(:page => params[:page])
+    @members = Member.all
   end
+
+   def viewNags
+    @members = Member.all
+    @nag = Nag.new 
+     #@feed_items = current_member.feed.paginate(:page => params[:page])
+    #@members = Member.all
+  end
+
+  def myNags
+    if signed_in?
+      @nag = Nag.new 
+      @feed_items = current_member.feed.paginate(:page => params[:page])
+      #render 'shared/feed'
+    end  
+  end
+
 
 end

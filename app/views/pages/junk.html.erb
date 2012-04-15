@@ -2,3 +2,33 @@
           <h1 class="nag">Send a Nag</h1>
           <%= render 'shared/nag_form' %>
         </td>
+-----------------
+(frombottom of  app/views/pages/nagForm.html.erb )
+
+<% unless @feed_items.empty? %>
+  <table class="nags" summary="Member nags">
+    <%= render :partial => 'shared/feed_item', :collection => @feed_items %>
+  </table>
+  <%= will_paginate @feed_items %>
+<% end %>
+
+-----------------
+
+<%= form_for (@nag) do |f| %>  
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions"> 
+  <ul class="members">
+    <% @members.each do |member|%>    
+          <%= f.submit "Nag" %> 
+          <%= member.name%> <br />       
+          <%= f.hidden_field :receiver_id, :value =>  member.id %>   
+     <% end %>
+  </ul> 
+    
+ 
+  </div>
+<% end %>
+

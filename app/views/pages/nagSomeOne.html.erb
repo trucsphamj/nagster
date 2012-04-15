@@ -1,0 +1,11 @@
+<h4> Nag Who? <h4>
+  <div class="actions"> 
+  <ul class="members">
+    <% @members.each do |member|%>    
+          <%= link_to "Nag", {:controller => 'members', :action => 'nagAMember', :id => member.id} %> 
+          <%= member.name%> <br />       
+     <% end %>
+  </ul>  
+  </div>
+
+

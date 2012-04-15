@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(:version => 20120401183229) do
   create_table "nags", :force => true do |t|
     t.string   "content"
     t.integer  "member_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "receiver_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  add_index "nags", ["member_id", "created_at"], :name => "index_nags_on_member_id_and_created_at"
+  add_index "nags", ["member_id", "receiver_id", "created_at"], :name => "index_nags_on_member_id_and_receiver_id_and_created_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"

@@ -1,14 +1,10 @@
-<tr>
-  <td class="gravatar">
-    <%= link_to gravatar_for(feed_item.member), feed_item.member %>
-  </td>
   <td class="nag">
     <span class="member">
-      <%= link_to feed_item.member.name, feed_item.member %>
     </span>
     <span class="content"><%= feed_item.content %></span>
     <span class="timestamp">
-      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+       Nagged <%=Member.find_by_id(feed_item.receiver_id ).name%>
+       <%= time_ago_in_words(feed_item.created_at) %> ago.
     </span>
   </td>
   <% if current_member?(feed_item.member) %>

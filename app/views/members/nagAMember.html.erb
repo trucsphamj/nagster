@@ -1,0 +1,11 @@
+<%= form_for (@nag) do |f| %>  
+    <%= render 'shared/error_messages', :object => f.object %>
+    <div class="field">
+    <%= f.text_area :content %>
+    <%= f.hidden_field :receiver_id, :value =>  @memberID %>
+  </div>
+  <div class="actions">          
+       <%= f.submit "Send" %>    
+  </div>
+<% end %>
+

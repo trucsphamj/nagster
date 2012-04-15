@@ -2,8 +2,9 @@ class NagsController < ApplicationController
   before_filter :authenticate, :only => [:create, :destroy]
   before_filter :authorized_member, :only => :destroy
 
+
   def create
-    @nag  = current_member.nags.build(params[:nag])
+    @nag  = current_member.nags.build(params[:nag])       
     if @nag.save
       flash[:success] = "Nag created!"
       redirect_to root_path

@@ -32,7 +32,10 @@ SampleApp::Application.routes.draw do
   match '/new', :to => 'members#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-  match '/nagForm', :to => 'pages#nagForm'
+  match '/nagSomeOne', :to => 'pages#nagSomeOne'   
+  match '/nagAMember', :to => 'members#nagAMember'
+  match '/viewNags', :to => 'pages#viewNags'
+  match '/myNags', :to => 'pages#myNags'
 
 
 

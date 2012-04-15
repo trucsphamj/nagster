@@ -4,8 +4,21 @@
     <span class="member_name">
       <%= current_member.name %>
     </span>
-    <span class="nags">
-      <%= pluralize(current_member.nags.count, "nag") %>
-    </span>
   </a>
+
+<% @members = Member.all 
+       @count = 0 
+       @members.each do |member| 
+          @nags = member.nags.all 
+          @nags.each do |nag| 
+            if nag.receiver_id.to_i == current_member.id.to_i 
+               @count += 1 
+            end 
+         end
+       end %>
+
+  <div class="numberOfNags">Nags created: 
+      <%= current_member.nags.count %> <br />
+      Nags received: <%= @count %>
+    </div>
 </div>     
