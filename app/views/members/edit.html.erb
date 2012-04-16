@@ -1,4 +1,9 @@
-<h1>Edit member</h1>
+<%= link_to "Members", members_path %>
+    <span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
+     <span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
+    <span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span>
+
+<h2>Edit member</h2>
 
 <%= form_for(@member) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>    
