@@ -43,8 +43,7 @@ group :test do
 end
 
 group :production do
- #gem 'pg'
- gem 'postgres-pr'
+ gem 'pg'
 end
 
 
