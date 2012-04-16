@@ -44,7 +44,7 @@ end
 
 group :production do
  gem 'pg'
-gem 'rubyracer'
+gem 'therubyracer'
 end
 
 
