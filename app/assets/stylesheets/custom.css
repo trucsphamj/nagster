@@ -245,6 +245,11 @@ form.new_nag textarea {
   margin-left: 10%;
 }
 
+#sendNagLinkOffset{
+  margin-left: 30%;
+}
+
+
 #postedBy{
   color: blue;
   float: left;
