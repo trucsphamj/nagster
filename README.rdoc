@@ -2,10 +2,6 @@
 
 This project was created by:
 
-Fred Rodriguez
-Truc Pham
-Blake Baker
-Nguyen Do
-Toms Linnes
+Fred Rodriguez, Truc Pham, Blake Baker, Nguyen Do, Toms Linnes
 
 The site can be located here: http://nagster.heroku.com/
