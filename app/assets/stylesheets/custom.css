@@ -513,6 +513,18 @@ form.new_nag textarea {
   margin-bottom: 0;
 }
 
+#checkbox{
+  font: .9em arial small;
+  color: red;
+}
+
+.check {
+  margin-left: 20%;
+  font: .9em arial small;
+  color: red;
+}
+
+
 #sendNagLink{
   margin-left: 10%;
 }

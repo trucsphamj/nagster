@@ -11,6 +11,10 @@
   </div>
   <div class="actions">
     <%= f.submit "Submit" %>
+    <span class="check">
+       <%= f.label :"Remember me"%>
+       <%= f.check_box(:remember) %>           
+    </span> 
   </div>
 <% end %>
 
