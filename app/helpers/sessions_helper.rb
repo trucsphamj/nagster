@@ -1,6 +1,10 @@
 module SessionsHelper
   def sign_in(member)
-    cookies.permanent.signed[:remember_token] = [member.id, member.salt]
+    if params[:session] && params[:session][:remember_me].to_i == 1
+      cookies.permanent.signed[:remember_token] = [member.id, member.salt]
+    else
+      cookies.signed[:remember_token] = [member.id, member.salt]
+    end
     self.current_member = member
   end
 
