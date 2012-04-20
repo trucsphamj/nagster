@@ -13,7 +13,10 @@
         <div id="nagContent"><%=  nag.content %> </div>   
         <span id="postedBy"> 
         Nagged by <%= member.name %> 
-        <%= time_ago_in_words(nag.created_at) %> ago. </span><br />
+        <%= time_ago_in_words(nag.created_at) %> ago. </span>
+        <span id="nagback">
+        <%= link_to "Nag back", {:controller => 'members', :action => 'nagAMember', :id => member.id} %> 
+        </span> <br />
       </td>
       </tr>
     <%end%>

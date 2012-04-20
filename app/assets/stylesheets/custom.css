@@ -539,6 +539,12 @@ form.new_nag textarea {
   float: left;
 }
 
+#nagback{
+  color: blue;
+  float: right;
+  margin-right :20%;
+}
+
 #nagContent{
   color: #CC6600;
   
