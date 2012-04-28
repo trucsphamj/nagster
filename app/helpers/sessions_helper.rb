@@ -1,12 +1,18 @@
 module SessionsHelper
+  #def sign_in(member)
+    #cookies.permanent.signed[:remember_token] = [member.id, member.salt]
+    #self.current_member = member
+  #end
+
   def sign_in(member)
-    if params[:session] && params[:session][:remember_me].to_i == 1
+    if((params[:session]) && (params[:session][:remember].to_i != 0)) #to implement part 2 of assignment #9
       cookies.permanent.signed[:remember_token] = [member.id, member.salt]
-    else
+    else #to implement part 2 of assignment #9
       cookies.signed[:remember_token] = [member.id, member.salt]
     end
     self.current_member = member
   end
+
 
   def current_member=(member)
     @current_member = member
@@ -24,6 +30,11 @@ module SessionsHelper
     cookies.delete(:remember_token)
     self.current_member = nil
   end
+
+  def lastLogin
+    return time_ago_in_words(cookies[:lastSession])  # display how long ago last log-in time is
+  end
+
 
   def current_member?(member)
     member == current_member

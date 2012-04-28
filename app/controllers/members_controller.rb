@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :authenticate, :only => [:show, :index, :edit, :update]
   before_filter :correct_member, :only => [:edit, :update]
   before_filter :admin_member,   :only => :destroy
   

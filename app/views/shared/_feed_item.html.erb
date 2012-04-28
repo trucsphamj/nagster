@@ -2,9 +2,9 @@
     <span class="member">
     </span>
     <span class="content"><%= feed_item.content %></span>
-    <span class="timestamp">
+    <span class="timestamp">     
        Nagged <%=Member.find_by_id(feed_item.receiver_id ).name%>
-       <%= time_ago_in_words(feed_item.created_at) %> ago.
+       <%= time_ago_in_words(feed_item.created_at) %> ago.  
     </span>
   </td>
   <% if current_member?(feed_item.member) %>

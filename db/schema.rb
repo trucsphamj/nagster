@@ -35,13 +35,4 @@ ActiveRecord::Schema.define(:version => 20120401183229) do
 
   add_index "nags", ["member_id", "receiver_id", "created_at"], :name => "index_nags_on_member_id_and_receiver_id_and_created_at"
 
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "encrypted_password"
-    t.string   "salt"
-  end
-
 end

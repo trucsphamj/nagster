@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
       @title = "Sign in"
       render 'new' # (render app/views/sessions/new.html.erb)
     else
+      cookies.permanent[:lastSession] = member.updated_at   #(save last log-in time before updating it)  
+      member.touch   #(update log-in time for this session)
       sign_in member #(this method located in app/helpers/sessions_helper.rb)
       redirect_back_or member #(this method located in app/helpers/sessions_helper.rb)
     end
