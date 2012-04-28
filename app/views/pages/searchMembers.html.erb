@@ -1,0 +1,30 @@
+<%= link_to "Members", members_path %>
+<span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
+<span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
+<span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> 
+
+<h3>Search for a Member</h3>
+Enter Member's email or name:
+
+<%
+=begin %>
+<% form_tag('/searchMembers') do %>
+  <div class="field">
+    <%= label_tag :search_value %><br />
+    <%= text_field_tag :search_value %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+<%
+=end %>
+
+
+<% form_tag pages_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+

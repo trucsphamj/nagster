@@ -40,5 +40,8 @@ class PagesController < ApplicationController
     end  
   end
 
+  def searchMembers
+    
+  end
 
 end
