@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = <<BANNER
+unit_diff - a ruby unit test filter by Ryan Davis <ryand-ruby@zenspider.com>
+
+usage:
+  test.rb | unit_diff [options]
+BANNER
+  opts.on("-b", "ignore whitespace differences") { $b = true }
+  opts.on("-c", "contextual diff") { $c = true }
+  opts.on("-k", "keep temp diff files around") { $k = true }
+  opts.on("-u", "unified diff") { $u = true }
+  opts.on("-v", "display version") { $v = true }
+  opts.on("-h", "--help","Show this.") { puts opts;exit }
+end.parse!
+
+begin
+  require 'unit_diff'
+rescue LoadError
+  require File.dirname(__FILE__) + '/../lib/unit_diff'
+end
+
+############################################################
+
+if defined? $v then
+  puts "#{File.basename $0} v. #{File.read( File.join(File.dirname(__FILE__),'..','VERSION') )}"
+  exit 0
+end
+
+if defined? $h then
+  File.open(__FILE__) do |f|
+    begin; end until f.readline =~ /usage:/
+    f.readline
+    while line = f.readline and line.sub!(/^# ?/, '')
+      $stderr.puts line
+    end
+  end
+  exit 0
+end
+
+UnitDiff.unit_diff

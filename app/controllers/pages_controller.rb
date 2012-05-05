@@ -40,5 +40,18 @@ class PagesController < ApplicationController
     end  
   end
 
+  def searchMembers
+    @searchResult = search(params[:search])
+  end
+
+private
+  def search(search)
+    if search
+      result = Member.find_by_email(search)
+      if result
+        result
+      end
+    end
+  end
 
 end

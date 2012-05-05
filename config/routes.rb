@@ -5,7 +5,6 @@ SampleApp::Application.routes.draw do
 
   get "members/create"
 
-  resources :users
   resources :members
   resources :sessions, :only => [:new, :create, :destroy]
   resources :nags, :only => [:create, :destroy]
@@ -17,8 +16,7 @@ SampleApp::Application.routes.draw do
   get "pages/about"
 
   get "pages/help"
-  
-  get "users/new"    
+     
  
  
   match '/home', :to => 'pages#home'
@@ -26,8 +24,6 @@ SampleApp::Application.routes.draw do
   match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
   match '/', :to => 'pages#home'
-  #match '/signup', :to => 'users#new'
-  #match '/new', :to => 'users#new'
   match '/signup', :to => 'members#new'
   match '/new', :to => 'members#new'
   match '/signin',  :to => 'sessions#new'
@@ -36,6 +32,7 @@ SampleApp::Application.routes.draw do
   match '/nagAMember', :to => 'members#nagAMember'
   match '/viewNags', :to => 'pages#viewNags'
   match '/myNags', :to => 'pages#myNags'
+  match '/searchMembers', :to => 'pages#searchMembers'
 
 
 

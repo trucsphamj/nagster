@@ -60,6 +60,14 @@ class MembersController < ApplicationController
     @memberID = params[:id]
   end
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
+
   private
     #(This method has been moved to app/helpers/session_helper.rb)
     #def authenticate 

@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = <<BANNER
+Continuous testing for your ruby app.
+
+Usage:
+    autotest [options]
+BANNER
+  opts.on("-f", "--fast-start","Do not run full tests at start") do
+    options[:no_full_after_start] = true
+  end
+  opts.on("-p", "--parallel","Run tests (Test::Unit only) in parallel -- gem install parallel_tests") do
+    options[:parallel] = true
+    require 'parallel_tests'
+  end
+  opts.on("-c", "--no-full-after-failed","Do not run full tests after failed test passed") { options[:no_full_after_failed] = true }
+  opts.on("-v", "--verbose","Be verbose. Prints files that autotest doesn't know how to map to tests") { options[:verbose] = true }
+  opts.on("-q", "--quiet","Be quiet.") { options[:quiet] = true }
+  opts.on("-r", "--rc CONFIG", String, "Path to config file. (Defaults to ~/.autotest or current_dir/.autotest)") do |opt|
+    options[:rc] = opt
+  end
+  opts.on("-s", "--style STYLE", "Which style to use, e.g. rspec, rspec2") do |style|
+    options[:style] = style
+  end
+  opts.on("-b", "--bundle-exec", "Use bundle exec to run tests") do
+    options[:bundle_exec] = true
+  end
+  opts.on("-h", "--help","Show this.") { puts opts;exit }
+end.parse!
+
+# remove warnings from Dir.[]
+class Dir
+  class << self
+    alias :old_index :[]
+    def [](*args)
+      $-w, old_warn = false, $-w
+      old_index(*args)
+    ensure
+      $-w = old_warn
+    end
+  end
+end
+
+#run the correct Autotest variant fitting to the local structure
+$LOAD_PATH.unshift(File.expand_path("#{File.dirname(__FILE__)}/../lib"))
+require 'autotest'
+
+Autotest.options.merge!(options)
+target = Autotest
+style = (options[:style] ? [options[:style]] : Autotest.autodiscover)
+
+unless style.empty?
+  mod = "autotest/#{style.join("_")}"
+  puts "loading #{mod}" unless options[:quiet]
+  begin
+    require mod
+  rescue LoadError => e
+    abort "Error loading Autotest style #{mod} (#{e.to_s}). Aborting."
+  end
+  puts "style: #{style.map {|s| s.capitalize}.join}"
+  target = Autotest.const_get(style.map {|s| s.capitalize}.join)
+end
+target.run
