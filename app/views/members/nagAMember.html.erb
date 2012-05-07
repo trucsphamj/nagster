@@ -1,13 +1,14 @@
 <%= link_to "Members", members_path %>
 <span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
 <span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
-<span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> 
+<span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> <br /><br />
 
+Nagging <%= @member.name %>
 <%= form_for (@nag) do |f| %>  
     <%= render 'shared/error_messages', :object => f.object %>
     <div class="field">
     <%= f.text_area :content %>
-    <%= f.hidden_field :receiver_id, :value =>  @memberID %>
+    <%= f.hidden_field :receiver_id, :value =>  @member.id %>
   </div>
   <div class="actions">          
        <%= f.submit "Send" %>    

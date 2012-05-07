@@ -1,0 +1,10 @@
+ <%= link_to "Members", members_path %>
+    <span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
+     <span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
+    <span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> <br /><br />
+
+<%@nameArray.each do |name|%>
+   <%=  link_to "Nag", {:controller => 'members', :action => 'nagAMember', :id => Member.find_by_name(name).id}%>
+    <%= link_to name, Member.find_by_name(name) %><br />
+<%end%>
+  

@@ -1,0 +1,16 @@
+<%= link_to "Members", members_path %>
+<span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
+<span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
+<span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> <br /><br />
+
+<h4> More than one name found</h4> 
+
+<div id="membersList">
+  
+    <% @members.each do |member|%>    
+          <%= link_to "Nag", {:controller => 'members', :action => 'nagAMember', :id => member.id} %> 
+          <%= member.name%> <br />       
+     <% end %>
+ 
+</div>
+
