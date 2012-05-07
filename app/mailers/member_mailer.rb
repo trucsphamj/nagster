@@ -1,5 +1,5 @@
 class MemberMailer < ActionMailer::Base
-  default :from => "notifications@example.com"
+  default :from => "nagsterNoReply@gmail.com"
  
   def welcome_email(member)
     @member = member
