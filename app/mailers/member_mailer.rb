@@ -3,7 +3,7 @@ class MemberMailer < ActionMailer::Base
  
   def welcome_email(member)
     @member = member
-    @url  = "http://example.com/login"
+    @url  = "http://http://nagster.heroku.com/signin"
     mail(:to => member.email, :subject => "Welcome to Nagster")
   end
 end
