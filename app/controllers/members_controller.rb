@@ -23,8 +23,8 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-    MemberMailer.welcome_email(@member)
     if @member.save
+      MemberMailer.welcome_email(@member)
       sign_in @member 
       flash[:success] = "Welcome to Nagster!"
       redirect_to @member
