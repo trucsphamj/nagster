@@ -1,27 +1,32 @@
+
 <%= link_to "Members", members_path %>
     <span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
     <span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span>
 
 <table class="nags" summary="Member nags">
 
-<% @members.each do |member|
-   @nags = member.nags.all
-   @nags.each do |nag|
+<% @nagsArray = Array.new
+   @members.each do |member|
+     nags = member.nags.all  
+     @nagsArray += nags
+   end
+   @nagsArray.sort!{|a, b| b.created_at <=> a.created_at}
+
+   @nagsArray.each do |nag|
     if nag.receiver_id.to_i == current_member.id.to_i %>
       <tr>
         <td class="nag">
         <div id="nagContent"><%=  nag.content %> </div>   
         <span id="postedBy"> 
-        Nagged by <%= member.name %> 
+        Nagged by <%= nag.member.name %> 
         <%= time_ago_in_words(nag.created_at) %> ago. </span>
         <span id="nagback">
-        <%= link_to "Nag back", {:controller => 'members', :action => 'nagAMember', :id => member.id} %> 
+        <%= link_to "Nag back", {:controller => 'members', :action => 'nagAMember', :id => nag.member.id} %> 
         </span> <br />
       </td>
       </tr>
     <%end%>
   <%end %>
-<%  end %>
 
 </table>
 

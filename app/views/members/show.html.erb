@@ -2,13 +2,14 @@
 <span id="sendNagLink"><%= link_to "Nag Them!", nagSomeOne_path %></span>
 <span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
 
+
 <table class="profile" summary="Profile information">
   <tr>
     <td class="main">
-      <h1>
+      <h3>
         <%= gravatar_for @member %>
-        <%= @member.name %>
-      </h1>
+        <%= @member.name%>'<%if @member.name[-1] != 's' %>s Nags <%else%> Nags <%end%>
+      </h3>
       <% unless @member.nags.empty? %>
         <table class="nags" summary="Member nags">
           <%= render @nags %>
@@ -31,7 +32,7 @@
          end
        end %>
        <strong>Nags received: </strong> <%= @count %> <br />
-       last log-in: <%= lastLogin %> ago 
+       
     </td>
   </tr>
 </table>

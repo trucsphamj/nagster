@@ -36,6 +36,8 @@ SampleApp::Application.routes.draw do
   match '/nagAMember', :to => 'members#nagAMember'
   match '/viewNags', :to => 'pages#viewNags'
   match '/myNags', :to => 'pages#myNags'
+  match '/findNagSomeOne', :to => 'pages#findNagSomeOne'    
+  match '/findShowSomeOne', :to => 'pages#findShowSomeOne' 
 
 
 

@@ -57,7 +57,7 @@ class MembersController < ApplicationController
 
   def nagAMember
     @nag = Nag.new
-    @memberID = params[:id]
+    @member = Member.find_by_id (params[:id])
   end
 
   private

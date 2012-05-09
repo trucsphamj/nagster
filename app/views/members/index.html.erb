@@ -1,9 +1,18 @@
 <span id="sendNagLinkOffset"><%= link_to "Nag Them!", nagSomeOne_path %></span>
 <span id="sendNagLink"><%= link_to "Am I nagged?", viewNags_path %></span>
-<span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> <br /> 
+<span id="sendNagLink"><%= link_to "My Nags", myNags_path %></span> <br /> <br />
 
-
-<h3>All members</h3>
+<div id="nameSearch">
+  
+  Enter the name of the person you want to search <br />
+  <form action='/findShowSomeOne'>
+  
+  <input type = "textbox", name="name"/> 
+  <input type = "submit", value="Find"/> <br /><br />
+  </form>
+Or find from the list of all members: <br />
+  
+</div>
 
 <%= will_paginate %>
 

@@ -285,4 +285,16 @@ form.new_nag textarea {
    float: right;
 }
 
+#membersList{
+  float: left;
+  width: 50%
+  text-alignment: center;
+}
+
+#nameSearch{
+  margin-left: 50%;
+}
+
+
+
 
